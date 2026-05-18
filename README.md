@@ -38,7 +38,27 @@ student-grade-calculator/
 - **Dockerfile** — Containerize the application for deployment
 - **.github/workflows/*.yml** — GitHub Actions workflow for automated CI
 
-### Business Rules
+---
+
+# Team Members and Roles
+
+The project is completed collaboratively by a group of five members. Each member is assigned a primary role to ensure efficient project management and responsibility distribution.
+
+| Name | Role | Responsibilities |
+|---|---|---|
+|TEFO MONYETSANE | Project Coordinator | Manages team tasks, tracks project progress, coordinates communication, and ensures all assessment requirements are completed|
+| MARUPENG MAKGATO | Git Lead | Repository management, branch protection, pull requests, README maintenance |
+| THANDOLWETHU SGALELANA| CI Engineer | Jenkins setup, GitHub Actions configuration, pipeline automation |
+| SANELISIWE MAHLANGU | QA / Tester | Unit testing, bug identification, bug verification and reporting |
+| SEJA ONALENNA HAMESE | Deployment Lead | Docker configuration, Render deployment, deployment workflow management |
+
+Although responsibilities are divided, all members are expected to understand the complete CI/CD pipeline and contribute collaboratively to the project.
+
+---
+
+# Business Rules
+
+The application follows the official VUT grading policy rules when calculating student academic results.
 
 | Rule | Description |
 |------|-------------|
