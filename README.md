@@ -59,6 +59,7 @@ student-grade-calculator/
 ├── Jenkinsfile
 ├── Dockerfile
 ├── README.md
+├── DEPLOYMENT.md
 ├── .github/
 │   └── workflows/
 │       ├── ci.yml
@@ -105,7 +106,7 @@ The project is completed collaboratively by a group of five members. Each member
 | MARUPENG MAKGATO | Git Lead | Repository management, branch protection, pull requests, README maintenance |
 | THANDOLWETHU SGALELANA| CI Engineer | Jenkins setup, GitHub Actions configuration, pipeline automation |
 | SANELISIWE MAHLANGU | QA / Tester | Unit testing, bug identification, bug verification and reporting |
-| SEJA HAMESE | Deployment Lead | Docker configuration, Render deployment, deployment workflow management |
+| ONALENNA | Deployment Lead | Docker configuration, Render deployment, deployment workflow management |
 
 Although responsibilities are divided, all members are expected to understand the complete CI/CD pipeline and contribute collaboratively to the project.
 
@@ -275,23 +276,25 @@ Containerisation ensures that the application runs consistently regardless of th
 
 # Deployment – Render.com
 
-The application is deployed to the internet using Render.com cloud hosting services.
+The application is deployed to the internet using [Render.com](https://render.com) cloud hosting.
 
-A deployment pipeline is implemented using GitHub Actions and Render Deploy Hooks. After successful CI testing, GitHub Actions automatically triggers deployment to Render.com.
+A deployment pipeline uses GitHub Actions and a Render **deploy hook**. After the CI workflow passes on `main`, the **Deploy to Render** workflow calls the hook; Render rebuilds the Docker image and redeploys. **Auto-Deploy is disabled** on Render so only the pipeline triggers production deploys.
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for setup steps (deploy hook secret, Render settings, troubleshooting).
 
 ## Deployment Process
 
 1. Developer pushes changes to `main`
-2. GitHub Actions executes CI workflow
-3. Tests and builds are validated
-4. Deployment workflow triggers Render Deploy Hook
+2. **CI Pipeline** workflow runs `mvn clean package` and `mvn test`
+3. On success, **Deploy to Render** workflow runs automatically
+4. GitHub Actions `POST`s the Render deploy hook URL
 5. Render rebuilds and redeploys the Docker container
-6. Updated application becomes publicly accessible online
+6. The updated application is available at the live URL
 
 ### Live Application URL
 
 ```text
-https://app-name.onrender.com
+https://student-grade-calculator-group7-lyrg.onrender.com
 ```
 
 Render deployment demonstrates practical implementation of Continuous Deployment principles.
@@ -312,7 +315,7 @@ The following software must be installed:
 ## Clone the Repository
 
 ```bash
-git clone https://github.com/username/student-grade-calculator.git
+git clone https://github.com/Hecktar/student-grade-calculator-group7.git
 ```
 
 ## Navigate into the Project
