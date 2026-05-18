@@ -106,7 +106,7 @@ The project is completed collaboratively by a group of five members. Each member
 | MARUPENG MAKGATO | Git Lead | Repository management, branch protection, pull requests, README maintenance |
 | THANDOLWETHU SGALELANA| CI Engineer | Jenkins setup, GitHub Actions configuration, pipeline automation |
 | SANELISIWE MAHLANGU | QA / Tester | Unit testing, bug identification, bug verification and reporting |
-| ONALENNA | Deployment Lead | Docker configuration, Render deployment, deployment workflow management |
+| SEJA ONALENNA HAMESE | Deployment Lead | Docker configuration, Render deployment, deployment workflow management |
 
 Although responsibilities are divided, all members are expected to understand the complete CI/CD pipeline and contribute collaboratively to the project.
 
