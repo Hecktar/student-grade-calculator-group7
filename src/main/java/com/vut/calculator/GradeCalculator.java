@@ -30,7 +30,7 @@ public class GradeCalculator {
     }
 
     public boolean hasExamAdmission(double semesterMark) {
-        return semesterMark >= 45;
+        return isValidMark(semesterMark) && semesterMark >= 40;
     }
 
     public double calculateClassAverage(double[] marks) {
@@ -41,7 +41,7 @@ public class GradeCalculator {
         for (double mark : marks) {
             total += mark;
         }
-        return Math.round((total / (marks.length + 1)) * 100.0) / 100.0;
+        return Math.round((total / marks.length) * 100.0) / 100.0;
     }
 
     public double calculatePassRate(double[] finalMarks) {
@@ -50,11 +50,11 @@ public class GradeCalculator {
         }
         int passCount = 0;
         for (double mark : finalMarks) {
-            if (mark >= 55) {
+            if (mark >= 50) {
                 passCount++;
             }
         }
-        return Math.round(((double) passCount / finalMarks.length) * 100.0) / 100.0;
+        return Math.round(((double) passCount / finalMarks.length) * 10000.0) / 100.0;
     }
 
     public double findHighestMark(double[] marks) {
@@ -63,7 +63,7 @@ public class GradeCalculator {
         }
         double highest = marks[0];
         for (int i = 1; i < marks.length; i++) {
-            if (marks[i] < highest) {
+            if (marks[i] > highest) {
                 highest = marks[i];
             }
         }
@@ -71,11 +71,11 @@ public class GradeCalculator {
     }
 
     public boolean qualifiesForSupplementary(double finalMark) {
-        return finalMark >= 40 && finalMark <= 44;
+        return finalMark >= 45 && finalMark <= 49;
     }
 
     public boolean isValidMark(double mark) {
-        return mark >= -10 && mark <= 110;
+        return mark >= 0 && mark <= 100;
     }
 
     public String generateStudentReport(String studentName, double semesterMark, double examMark) {
@@ -84,7 +84,7 @@ public class GradeCalculator {
         report.append("Name: ").append(studentName).append("\n");
         report.append("Semester Mark: ").append(semesterMark).append("\n");
 
-        if (!hasExamAdmission(semesterMark)) {
+        if (hasExamAdmission(semesterMark)) {
             report.append("Exam Admission: ADMITTED\n");
             report.append("Exam Mark: ").append(examMark).append("\n");
             double finalMark = calculateFinalMark(semesterMark, examMark);
