@@ -60,6 +60,7 @@ student-grade-calculator/
 ├── Dockerfile
 ├── README.md
 ├── DEPLOYMENT.md
+├── BUG_REPORT.md
 ├── .github/
 │   └── workflows/
 │       ├── ci.yml
@@ -84,6 +85,7 @@ student-grade-calculator/
 |---|---|
 | pom.xml | Maven configuration file containing dependencies and build settings |
 | Jenkinsfile | Jenkins pipeline definition for CI/CD automation |
+| BUG_REPORT.md | Table of all 9 bugs, tests, and fixes for submission |
 | Dockerfile | Docker configuration used to containerise the application |
 | ci.yml | GitHub Actions workflow for Continuous Integration |
 | deploy.yml | GitHub Actions workflow for automated deployment |
@@ -140,14 +142,16 @@ The project uses GitHub for version control and collaborative development. A fea
 
 ```text
 main
-├── feature/github-actions
-├── feature/jenkins
-├── feature/docker
-├── feature/testing
-├── bugfix/grade-formula
-├── bugfix/grade-boundaries
-└── bugfix/admission-rules
+├── feature/github-actions      (CI workflow — .github/workflows/ci.yml)
+├── feature/jenkins             (Jenkinsfile)
+├── feature/docker              (Dockerfile + deploy.yml — merged via PR)
+├── feature/testing             (GradeCalculatorTest.java + TODO tests)
+├── bugfix/grade-formula        (Bug #1 — final mark weights)
+├── bugfix/grade-boundaries     (Bug #2 — grade boundaries)
+└── bugfix/admission-rules      (Bugs #3, #7, #8, #9 — admission, validation, report)
 ```
+
+> **Note:** `feature/docker` was developed as `feature/docker-render-deployment` and merged to `main` in PR #1–#2.
 
 ## Workflow Process
 
