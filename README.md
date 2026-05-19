@@ -86,6 +86,7 @@ student-grade-calculator/
 | pom.xml | Maven configuration file containing dependencies and build settings |
 | Jenkinsfile | Jenkins pipeline definition for CI/CD automation |
 | BUG_REPORT.md | Table of all 9 bugs, tests, and fixes for submission |
+| TEAM_STEPS.md | Step-by-step guide for push, PRs, Jenkins, Render, and submission |
 | Dockerfile | Docker configuration used to containerise the application |
 | ci.yml | GitHub Actions workflow for Continuous Integration |
 | deploy.yml | GitHub Actions workflow for automated deployment |
