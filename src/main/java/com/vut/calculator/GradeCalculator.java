@@ -11,17 +11,22 @@ public class GradeCalculator {
     }
 
     public String determineGrade(double finalMark) {
-        if (finalMark > 80) {
-            return "Distinction";
-        } else if (finalMark >= 75) {
-            return "Merit";
-        } else if (finalMark >= 65) {
-            return "Credit";
-        } else if (finalMark >= 55) {
-            return "Pass";
-        } else {
-            return "Fail";
+        if (finalMark < 0 || finalMark > 100) {
+            return "Invalid";
         }
+        if (finalMark >= 80) {
+            return "Distinction";
+        }
+        if (finalMark >= 70) {
+            return "Merit";
+        }
+        if (finalMark >= 60) {
+            return "Credit";
+        }
+        if (finalMark >= 50) {
+            return "Pass";
+        }
+        return "Fail";
     }
 
     public boolean hasExamAdmission(double semesterMark) {
