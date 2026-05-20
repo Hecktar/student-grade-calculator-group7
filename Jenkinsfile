@@ -11,13 +11,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true clean package'
+                bat '"C:\\Program Files\\Apache\\maven\\apache-maven-3.9.15\\bin\\mvn.cmd" clean package'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'mvn -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true test'
+                bat '"C:\\Program Files\\Apache\\maven\\apache-maven-3.9.15\\bin\\mvn.cmd" test'
             }
 
             post {
@@ -35,12 +35,17 @@ pipeline {
     }
 
     post {
+
         success {
             echo 'Pipeline completed successfully.'
         }
 
         failure {
             echo 'Pipeline failed. Check build and test logs.'
+        }
+
+        always {
+            echo 'Pipeline execution finished.'
         }
     }
 }
