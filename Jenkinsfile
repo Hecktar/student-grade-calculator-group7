@@ -4,10 +4,10 @@ pipeline {
     stages {
 
         stage('Checkout') {
-            steps {
-                git 'https://github.com/Hecktar/student-grade-calculator-group7.git'
-            }
-        }
+    steps {
+        checkout scm
+    }
+}
 
         stage('Build') {
             steps {
