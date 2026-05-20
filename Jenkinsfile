@@ -1,48 +1,30 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven'
-        jdk 'JDK11'
-    }
-
     stages {
+
         stage('Checkout') {
             steps {
-                checkout scm
+                git 'https://github.com/Hecktar/student-grade-calculator-group7.git'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                bat 'mvn clean package'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
-
-        stage('Archive') {
-            steps {
-                archiveArtifacts artifacts: 'target/*.war', fingerprint: true, allowEmptyArchive: false
+                bat 'mvn test'
             }
         }
     }
 
     post {
-        success {
-            echo 'Pipeline completed successfully.'
-        }
-        failure {
-            echo 'Pipeline failed. Check build and test logs.'
+        always {
+            junit 'target/surefire-reports/*.xml'
         }
     }
 }
