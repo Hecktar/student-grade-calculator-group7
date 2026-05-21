@@ -29,3 +29,8 @@ mvn test
 ```
 
 All tests must pass before merging to `main`.
+## QA Final Verification
+**Date:** 21 May 2026
+**All 38 JUnit tests pass.**
+**Live app tested:** semester=55, exam=65 → final=61.0, grade=Credit.
+**Verified by:** Sanelisiwe Mahlangu (QA/Tester)
