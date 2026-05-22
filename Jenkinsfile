@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven'
+        jdk 'JDK11'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -10,38 +15,32 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat '"C:\\Program Files\\Maven\\apache-maven-3.9.15\\bin\\mvn.cmd" clean package'
+                sh 'mvn clean package -DskipTests'
             }
         }
 
         stage('Test') {
             steps {
-                bat '"C:\\Program Files\\Maven\\apache-maven-3.9.15\\bin\\mvn.cmd" test'
+                sh 'mvn test'
             }
-
             post {
                 always {
-                    junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
+                    junit 'target/surefire-reports/*.xml'
                 }
             }
         }
 
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: 'target/*.war', fingerprint: true, allowEmptyArchive: true
+                archiveArtifacts artifacts: 'target/*.war', fingerprint: true, allowEmptyArchive: false
             }
         }
     }
 
     post {
-        always {
-            echo 'Pipeline execution finished.'
-        }
-
         success {
             echo 'Pipeline completed successfully.'
         }
-
         failure {
             echo 'Pipeline failed. Check build and test logs.'
         }
