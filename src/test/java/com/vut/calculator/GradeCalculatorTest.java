@@ -189,6 +189,21 @@ public class GradeCalculatorTest {
     }
 
     @Test
+    public void testValidMark_InRange() {
+        assertTrue(calculator.isValidMark(50));
+    }
+
+    @Test
+    public void testValidMark_Zero() {
+        assertTrue(calculator.isValidMark(0));
+    }
+
+    @Test
+    public void testValidMark_Hundred() {
+        assertTrue(calculator.isValidMark(100));
+    }
+
+    @Test
     public void testValidMark_Negative() {
         assertFalse(calculator.isValidMark(-5.0));
     }
