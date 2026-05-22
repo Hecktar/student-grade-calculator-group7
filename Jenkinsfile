@@ -15,13 +15,21 @@ pipeline {
 
         stage('Build') {
             steps {
+<<<<<<< Updated upstream
                 sh 'mvn clean package -DskipTests'
+=======
+                bat '"C:\\Program Files\\Maven\\apache-maven-3.9.15\\bin\\mvn.cmd"  clean package'
+>>>>>>> Stashed changes
             }
         }
 
         stage('Test') {
             steps {
+<<<<<<< Updated upstream
                 sh 'mvn test'
+=======
+                bat 'C:\\Program Files\\Maven\\apache-maven-3.9.15\\bin\\mvn.cmd"  test'
+>>>>>>> Stashed changes
             }
             post {
                 always {
