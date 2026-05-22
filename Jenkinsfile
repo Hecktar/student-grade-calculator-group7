@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven'   // must match the name in Jenkins → Global Tool Configuration
+        jdk 'JDK11'     // must match the name in Jenkins → Global Tool Configuration
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -10,38 +15,34 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat '"C:\\Program Files\\Apache\\maven\\apache-maven-3.9.15\\bin\\mvn.cmd" -o clean package'
+                bat 'mvn clean package -DskipTests'
             }
         }
 
         stage('Test') {
             steps {
-                bat '"C:\\Program Files\\Apache\\maven\\apache-maven-3.9.15\\bin\\mvn.cmd" -o test'
-            }
-
-            post {
-                always {
-                    junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
-                }
+                bat 'mvn test'
             }
         }
 
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: 'target/*.war', fingerprint: true, allowEmptyArchive: true
+                archiveArtifacts artifacts: 'target/*.war',
+                                 fingerprint: true,
+                                 allowEmptyArchive: true
             }
         }
     }
 
     post {
         always {
+            junit allowEmptyResults: true,
+                  testResults: 'target/surefire-reports/*.xml'
             echo 'Pipeline execution finished.'
         }
-
         success {
             echo 'Pipeline completed successfully.'
         }
-
         failure {
             echo 'Pipeline failed. Check build and test logs.'
         }
